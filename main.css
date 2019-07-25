@@ -1,0 +1,136 @@
+body {
+    background-color: #2b2b2b;
+    color: white;
+}
+
+.header {
+    width: auto;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    border-bottom: 1px solid gray;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 50px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
+
+.nav {
+    height: auto;
+}
+
+.dropdown-btn {
+    height: 40px;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 15px;
+}
+
+.dropdown-container {
+    display: none;
+}
+
+.dropdown-container li {
+    padding: 6px 8px 6px 36px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown-container li:hover,
+.dropdown-btn:hover {
+    background-color: black;
+    border-radius: 0px;
+}
+
+.navul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    color: white;
+    font-size: 13px;
+}
+
+.content {
+    min-height: 500px;
+    height: auto;
+    padding: 0 50px;
+}
+
+.schema {
+    list-style: none;
+    padding-left: 0;
+}
+
+.schema li {
+    display: table-cell;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    border: white solid 1px;
+}
+
+.active {
+    background-color: #2b2b2b;
+}
+
+#elsa {
+    list-style-type: none;
+    margin: 0;
+    margin-left: 1px;
+    padding: 0;
+    padding-left: 1px;
+    overflow: hidden;
+    background-color: #333;
+    height: 40px;
+}
+
+#elsa li {
+    display: block;
+    float: left;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    padding: 8px 16px 14px;
+    transition: 0.5s;
+}
+
+#elsa li:hover {
+    background-color: #2b2b2b;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: 0.5s;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    background-color: #2b2b2b;
+}
