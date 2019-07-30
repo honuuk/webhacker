@@ -1,4 +1,4 @@
-<section id="content1">
+<div class="cont">
                     <p>
                         <h3>SQL INJECTION 이란?</h3>
                         SQL Injection(SQL 삽입, SQL 주입으로도 불린다)은 코드 인젝션의 한 기법으로 클라이언트의 입력값을 조작하여 서버의 데이터베이스를 공격할 수 있는 공격방식을 말한다. 즉, 로그인 창이나 검색창과 같은 사용자의 입력을 받아 서버로 보내주는 상황에서 입력값에 데이터베이스 조작 코드를 삽입해 서버의 데이터베이스를 공격하거나 인증을 우회하는 공격방식이다. 공격이 쉬운 데 비해 파괴력이 어마어마하기 때문에 사용자가 입력한 데이터를 제대로 필터링, 이스케이핑하여 처리해야 한다. 이러한 injection 계열의 취약점들은 테스트를 통해 발견하기는 힘들지만 스캐닝툴이나 코드 검증절차를 거치면 보통 쉽게 발견되기 때문에 탐지하기는 쉬운 편이다.
@@ -65,8 +65,8 @@
 
                     <!--원문보기:
         http://www.itworld.co.kr/news/108468#csidx8eeb24caf3c88f787a27dcd73befaa5 -->
-                </section>
-                <section id="content1">
+                </div>
+                <div class="cont" style="display:none;">
                     <p>다음은 로그인 화면이다. 아이디가 tom123인 계정의 비밀번호를 모르는 상황에서 로그인에 성공하시오.</br>
                         </br>
                         database schema
@@ -108,8 +108,8 @@ $('#login').click( function() {
       })
     </script>
 
-                </section>
-                <section id="content1">
+                </div>
+                <div class="cont" style="display:none;">
 
                     추가적으로 id : ' or '1'='1' #, pw: anything 을 입력하게 되면 SQL에서 # 뒤의 코드가 주석처리 되기 때문에 쿼리가</br></br> SELECT id FROM member WHERE id = '' or '1'='1'<span style="color:gray;"> #' AND pw :'anything'</span></br>
                     </br>
@@ -130,4 +130,4 @@ $('#login').click( function() {
                     <p>
                     사용자의 입력에 데이터베이스를 공격할 수 있는</br></br> /*, –, ‘, “, ?, #, (, ), ;, @, =, *, +, UNION, SELECT, DROP, UPDATE, FROM, WHERE, JOIN, SUBSTR, USER_TABLES, USER_TABLE_COLUMNS, INFORMATION_SCHEMA, SYSOBJECT, TABLE_SCHEMA</br></br> 등등의 문자가 섞여 있는지를 확인하고 필터링을 해준다. 입력값 필터링만 제대로 해줘도 대부분의 공격을 막을 수 있다. 하지만 블랙리스트로 선정해놓은 단어들의 리스트 외의 키워드를 사용해 공격을 할 수도 있기 때문에 Prepared Statement를 사용하는 것을 추천한다.
                     </p>
-                </section>
+                </div>

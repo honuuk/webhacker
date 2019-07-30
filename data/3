@@ -1,4 +1,4 @@
-<section id="content3">
+<div class="cont">
                     <h3>BLIND INJECTION 이란?</h3>
                     <p>
                     Blind Injection은 서버로 전송된 쿼리결과가 true / false 만으로 나타나는 상황에서 원하는 정보를 얻어낼 수 있는 공격기법이다.
@@ -65,8 +65,8 @@
                     <p>이렇게 5번째 글자가 NULL이므로 계좌번호가 15613인 사용자의 이름이 jack이라는 정보를 서버의 true / false 반응만을 이용하여 얻을 수 있다. 이를 Blind Injection이라고 한다.
                     </p>
 
-                </section>
-                <section id="content3">
+                </div>
+                <div class="cont" style="display:none;">
                     <p>아래에 계좌번호를 입력하면 유효한지 아닌지 보여준다. Blind injection을 이용하여 계좌번호가 15613인 사람의 이름을 알아내시오.</br>
                         </br>
                         테이블의 이름은 account_info이고 테이블은 name, account column으로 이루어져 있다.
@@ -109,8 +109,8 @@ $('#check1').click( function() {
     </script>
                     <br /><br />
 
-                </section>
-                <section id="content3">
+                </div>
+                <div class="cont" style="display:none;">
                     <h3>Blind Injection 방지 기법</h3>
             Blind Injection 역시 SQL Injection 방지 기법을 통해 방어가 가능하다.
                     <h4> 1) Prepared Statement</h4>
@@ -128,4 +128,4 @@ $('#check1').click( function() {
                     <p>
                     사용자의 입력에 데이터베이스를 공격할 수 있는</br></br> /*, –, ‘, “, ?, #, (, ), ;, @, =, *, +, UNION, SELECT, DROP, UPDATE, FROM, WHERE, JOIN, SUBSTR, USER_TABLES, USER_TABLE_COLUMNS, INFORMATION_SCHEMA, SYSOBJECT, TABLE_SCHEMA</br></br> 등등의 문자가 섞여 있는지를 확인하고 필터링을 해준다. 입력값 필터링만 제대로 해줘도 대부분의 공격을 막을 수 있다. 하지만 블랙리스트로 선정해놓은 단어들의 리스트 외의 키워드를 사용해 공격을 할 수도 있기 때문에 Prepared Statement를 사용하는 것을 추천한다.
                     </p>
-                </section>
+                </div>

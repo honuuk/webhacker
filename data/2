@@ -1,4 +1,4 @@
-<section id="content2">
+<div class="cont">
             <h3>UNION SQL INJECTION 이란?</h3>
             Union SQL Injection은 2개 이상의 쿼리를 요청하여 결과를 얻는 UNION이라는 SQL 연산자를 이용한 SQL Injection 공격을 말한다. 즉, 원래의 요청에 한 개의 추가 쿼리를 삽입하여 정보를 얻는 공격 기법이다.</br>
             </br>
@@ -60,8 +60,8 @@
             <img src="/img/union_result4.JPG"></br>
 
 
-            </section>
-        <section id="content2">
+            </div>
+        <div class="cont" style="display:none;">
             <p> 이름과 학번을 입력하면 수강과목의 정보를 얻을 수 있다. union sql injection으로 사용하여 모든 학생의 학번 정보를 얻어내시오.
                 </br>
                 </br>
@@ -133,8 +133,8 @@ $('#check').click( function() {
 
                     </script>
                     </div>
-        </section>
-        <section id="content2">
+        </div>
+        <div class="cont" style="display:none;">
 
             <h3>UNION SQL Injection 방지 기법</h3>
             UNION SQL Injection도 SQL Injection 방지 기법을 통해 방어가 가능하다.
@@ -153,4 +153,4 @@ $('#check').click( function() {
                     <p>
                     사용자의 입력에 데이터베이스를 공격할 수 있는</br></br> /*, –, ‘, “, ?, #, (, ), ;, @, =, *, +, UNION, SELECT, DROP, UPDATE, FROM, WHERE, JOIN, SUBSTR, USER_TABLES, USER_TABLE_COLUMNS, INFORMATION_SCHEMA, SYSOBJECT, TABLE_SCHEMA</br></br> 등등의 문자가 섞여 있는지를 확인하고 필터링을 해준다. 입력값 필터링만 제대로 해줘도 대부분의 공격을 막을 수 있다. 하지만 블랙리스트로 선정해놓은 단어들의 리스트 외의 키워드를 사용해 공격을 할 수도 있기 때문에 Prepared Statement를 사용하는 것을 추천한다.
                     </p>
-        </section>
+        </div>
