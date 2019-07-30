@@ -1,11 +1,11 @@
-<div class="cont">
+<section id="content1">
                     <p>
                         <h3>SQL INJECTION 이란?</h3>
-                        SQL Injection(SQL 삽입, SQL 주입으로도 불린다)은 코드 인젝션의 한 기법으로 클라이언트의 입력값을 조작하여 서버의 데이터베이스를 공격할 수 있는 공격방식을 말한다. 즉, 로그인 창이나 검색창과 같은 사용자의 입력을 받아 서버로 보내주는 상황에서 입력값에 데이터베이스 조작 코드를 삽입해 서버의 데이터베이스를 공격하거나 인증을 우회하는 공격방식이다. 공격이 쉬운 데 비해 파괴력이 어마어마하기 때문에 사용자가 입력한 데이터를 제대로 필터링, 이스케이핑하여 처리해야 한다. 이러한 injection 계열의 취약점들은 테스트를 통해 발견하기는 힘들지만 스캐닝툴이나 코드 검증절차를 거치면 보통 쉽게 발견되기 때문에 탐지하기는 쉬운 편이다. 
+                        SQL Injection(SQL 삽입, SQL 주입으로도 불린다)은 코드 인젝션의 한 기법으로 클라이언트의 입력값을 조작하여 서버의 데이터베이스를 공격할 수 있는 공격방식을 말한다. 즉, 로그인 창이나 검색창과 같은 사용자의 입력을 받아 서버로 보내주는 상황에서 입력값에 데이터베이스 조작 코드를 삽입해 서버의 데이터베이스를 공격하거나 인증을 우회하는 공격방식이다. 공격이 쉬운 데 비해 파괴력이 어마어마하기 때문에 사용자가 입력한 데이터를 제대로 필터링, 이스케이핑하여 처리해야 한다. 이러한 injection 계열의 취약점들은 테스트를 통해 발견하기는 힘들지만 스캐닝툴이나 코드 검증절차를 거치면 보통 쉽게 발견되기 때문에 탐지하기는 쉬운 편이다.
                     </p>
 </br>
 
-                   
+
                         <h3>SQL INJECTION 공격의 예</h3>
                         기본적인 SQL 인젝션 공격을 보자. 예를 들어 고객이 ID를 입력해 자신의 고객 프로필을 불러올 수 있는 웹 애플리케이션이 있다. 이 웹 애플리케이션은 사용자로부터 고객 ID를 입력받아 서버의 데이터베이스로 전달한다. 데이터베이스는 SQL 쿼리를 실행하고 결과를 웹 애플리케이션에 반환한다. 웹 애플리케이션은 최종 사용자에게 결과를 표시한다.
                     </p>
@@ -26,10 +26,10 @@
                     SELECT *</br>
                     FROM customers</br>
                     WHERE customer_id = '<span style="color:red;">1234567'; DELETE * customers WHERE '1' = '1</span>';</br>
-                    
+
                     <p>
                         홑따옴표 ', 세미콜론 ; 문자에 대한 사용자 입력을 무결 처리하지 못하는 경우 위 쿼리가 그대로 실행되어 공격자가 전체 테이블을 삭제하는 것이 가능해진다. 이렇게 되면 백업이 있기를 바라는 수밖에 없다.</p>
-                    
+
                     <p>
                     </br>
                         다음은 로그인 상황에서의 SQL Injection에 대해 알아보자. 사용자는 ID와 PASSWORD를 입력하고 해당 입력값이 서버의 데이터베이스에 존재하면 로그인에 성공하게 된다. 서버로 전송되는 데이터베이스 쿼리는 다음과 같다</p>
@@ -49,10 +49,10 @@
                     SELECT *</br>
                     FROM customers</br>
                     WHERE customer_id = '<span style="color:red;">alice</span>' AND password='<span style="color:red;">' or '1'='1</span>';</br>
-                    
+
                     <p>
                         위 쿼리가 실행되면 PASSWORD값이 항상 TRUE가 되어 공격자가 PASSWORD는 모르고 ID만 알고있는 상황에서 서버의 인증을 우회하여 로그인에 성공할 수 있게 된다.</p>
-                   
+
 
 <style>input[type=password]{
     width: 100%;
@@ -63,10 +63,10 @@
     box-sizing: border-box;
 }</style>
 
-                    <!--원문보기: 
+                    <!--원문보기:
         http://www.itworld.co.kr/news/108468#csidx8eeb24caf3c88f787a27dcd73befaa5 -->
-                </div>
-                <div class="cont" style="display:none; ">
+                </section>
+                <section id="content1">
                     <p>다음은 로그인 화면이다. 아이디가 tom123인 계정의 비밀번호를 모르는 상황에서 로그인에 성공하시오.</br>
                         </br>
                         database schema
@@ -92,25 +92,25 @@
                     <script>
 $('#login').click( function() {
           $.ajax({
-              url: '/page1', 
+              url: '/page1',
               dataType: 'json',
-              type: 'POST', 
-              data: {'id':$('#id').val(), 'password':$('#password').val()}, 
-              success: function(result) { 
+              type: 'POST',
+              data: {'id':$('#id').val(), 'password':$('#password').val()},
+              success: function(result) {
                   if ( result['result'] == true ) {
                       alert('성공');
                   }
                   else{
                       alert('실패');
                   }
-              } 
-          }); 
+              }
+          });
       })
     </script>
 
-                </div>
-                <div class="cont" style="display:none; ">
-                
+                </section>
+                <section id="content1">
+
                     추가적으로 id : ' or '1'='1' #, pw: anything 을 입력하게 되면 SQL에서 # 뒤의 코드가 주석처리 되기 때문에 쿼리가</br></br> SELECT id FROM member WHERE id = '' or '1'='1'<span style="color:gray;"> #' AND pw :'anything'</span></br>
                     </br>
                     꼴이 되어 항상 참인 쿼리로 동작해 ID와 PASSWORD를 모두 모르는 상황에서도 로그인이 가능해진다. </br></br>
@@ -125,9 +125,9 @@ $('#login').click( function() {
                         SELECT id FROM member WHERE id = '<span style="color:red;">tom123</span>' AND pw :'<span style="color:red;">' or '1'='1</span>'</br></br>
                         이 쿼리가 서버로 전송되면 서버는 데이터베이스의 member 테이블에서 ID값이 "<span style="color:red;">tom123</span>"이고 PASSWORD값이 "<span style="color:red;">' or '1'='1</span>"인 계정이 존재하는지 확인하기 때문에 SQL Injection을 통한 인증 우회가 불가능해진다.
 
-                    </p>  
-                    <h4> 2) 입력값 검증</h4>  
-                    <p>
-                    사용자의 입력에 데이터베이스를 공격할 수 있는</br></br> /*, –, ‘, “, ?, #, (, ), ;, @, =, *, +, UNION, SELECT, DROP, UPDATE, FROM, WHERE, JOIN, SUBSTR, USER_TABLES, USER_TABLE_COLUMNS, INFORMATION_SCHEMA, SYSOBJECT, TABLE_SCHEMA</br></br> 등등의 문자가 섞여 있는지를 확인하고 필터링을 해준다. 입력값 필터링만 제대로 해줘도 대부분의 공격을 막을 수 있다. 하지만 블랙리스트로 선정해놓은 단어들의 리스트 외의 키워드를 사용해 공격을 할 수도 있기 때문에 Prepared Statement를 사용하는 것을 추천한다. 
                     </p>
-                </div>
+                    <h4> 2) 입력값 검증</h4>
+                    <p>
+                    사용자의 입력에 데이터베이스를 공격할 수 있는</br></br> /*, –, ‘, “, ?, #, (, ), ;, @, =, *, +, UNION, SELECT, DROP, UPDATE, FROM, WHERE, JOIN, SUBSTR, USER_TABLES, USER_TABLE_COLUMNS, INFORMATION_SCHEMA, SYSOBJECT, TABLE_SCHEMA</br></br> 등등의 문자가 섞여 있는지를 확인하고 필터링을 해준다. 입력값 필터링만 제대로 해줘도 대부분의 공격을 막을 수 있다. 하지만 블랙리스트로 선정해놓은 단어들의 리스트 외의 키워드를 사용해 공격을 할 수도 있기 때문에 Prepared Statement를 사용하는 것을 추천한다.
+                    </p>
+                </section>
