@@ -67,47 +67,48 @@
 
                 </div>
                 <div class="cont" style="display:none;">
-                    <p>아래에 계좌번호를 입력하면 유효한지 아닌지 보여준다. Blind injection을 이용하여 계좌번호가 15613인 사람의 이름을 알아내시오.</br>
-                        </br>
-                        테이블의 이름은 account_info이고 테이블은 name, account column으로 이루어져 있다.
-                    </p>
-                    </br>
-                    </br>
-                    database schema
+                  <p>아래에 계좌번호를 입력하면 유효한지 아닌지 보여준다. Blind injection을 이용하여 계좌번호가 15613인 사람의 이름을 알아내시오.</br>
+                      </br>
+                      테이블의 이름은 account_info이고 테이블은 name, account column으로 이루어져 있다.
+                  </p>
+                  </br>
+                  </br>
+                  database schema
 
-                    <ul class="schema">
-                        <li>name(varchar(32))</li>
-                        <li>account(char(5))</li>
-                    </ul>
-                    query</br>
-                    SELECT * FROM account_info WHERE account='$account'
-                    </br>
-                    </br>
+                  <ul class="schema">
+                      <li>name(varchar(32))</li>
+                      <li>account(char(5))</li>
+                  </ul>
+                  query</br>
+                  SELECT * FROM account_info WHERE account='$account'
+                  </br>
+                  </br>
 
-                    <form action="/page3" method="post" autocomplete=off>
-                        <label>Account :</label><input type="text" id="account" /><br /><br />
+                  <form action="/page3" method="post" autocomplete=off  style="margin-top:30px;">
+                      <label style="font-size:15px;">Account :</label>
+                      <p><input type="text" placeholder="계좌번호를 입력하시오." id="account" /></p>
 
-                        <input type="button" value="확인" id="check1" /><br />
-                    </form>
-                    <script>
-$('#check1').click( function() {
-          $.ajax({
-              url: '/page3',
-              dataType: 'json',
-              type: 'POST',
-              data: {'account':$('#account').val()},
-              success: function(result) {
-                  if ( result['result'] == true ) {
-                      alert('유효함');
-                  }
-                  else{
-                      alert('유효하지 않음');
-                  }
-              }
-          });
-      })
-    </script>
-                    <br /><br />
+                      <input type="button" value="확인" id="check1" /><br />
+                  </form>
+                  <script>
+ $('#check1').click( function() {
+        $.ajax({
+            url: '/page3',
+            dataType: 'json',
+            type: 'POST',
+            data: {'account':$('#account').val()},
+            success: function(result) {
+                if ( result['result'] == true ) {
+                    alert('유효함');
+                }
+                else{
+                    alert('유효하지 않음');
+                }
+            }
+        });
+    })
+  </script>
+                  <br /><br />
 
                 </div>
                 <div class="cont" style="display:none;">

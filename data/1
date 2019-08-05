@@ -81,16 +81,17 @@
                         SELECT id FROM member WHERE id = '사용자의 id 입력값' AND pw = '사용자의 pw 입력값'
                     </p>
                     </br>
-                    </br>
 
                     <form action="/page1 " method="post" autocomplete=off>
-                        <label>Id :</label><input type="text" id="id" /><br /><br />
-                        <label>Password :</label><input type="password" id="password" /><br /><br />
+                        <label style="font-size:15px;">Id :</label>
+                        <p><input type="text" placeholder="아이디를 입력하시오." id="id"></p>
+                        <label style="font-size:15px;">Password :</label>
+                        <p><input type="password" placeholder="비밀번호를 입력하시오." id="password"></p>
                         <input type="button" id="login" value="로그인" /><br />
                     </form>
                     <br /><br />
                     <script>
-$('#login').click( function() {
+  $('#login').click( function() {
           $.ajax({
               url: '/page1',
               dataType: 'json',

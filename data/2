@@ -61,79 +61,81 @@
 
 
             </div>
-        <div class="cont" style="display:none;">
-            <p> 이름과 학번을 입력하면 수강과목의 정보를 얻을 수 있다. union sql injection으로 사용하여 모든 학생의 학번 정보를 얻어내시오.
-                </br>
-                </br>
-                database schema
+            <div class="cont" style="display:none;">
+              <p> 이름과 학번을 입력하면 수강과목의 정보를 얻을 수 있다. union sql injection으로 사용하여 모든 학생의 학번 정보를 얻어내시오.
+                  </br>
+                  </br>
+                  database schema
 
-                <ul class="schema">
-                    <li>s_id(char(10))</li>
-                    <li>name(varchar(32))</li>
-                    <li>grade(int(1))</li>
-                    <li>class(varchar(32))</li>
-                    <li>score(char(2))</li>
-                </ul>
-                query</br>
-                SELECT * FROM student_info WHERE name='$name ' AND s_id='$s_id'
-            </p>
-            </br>
-            </br>
-
-
-
-            <form action="/page2" method="post" autocomplete=off>
-                <label>name  :</label><input type="text" id="name" /><br /><br />
-                <label>s_id  :</label><input type="text" id="s_id" /><br/><br />
-                <input type="button" value="확인" id="check" onclick="document.getElementById('id01').style.display='block'" /><br />
-            </form>
-            <div id="id01" class="modal">
-
-                       <div class="modal-content animate" >
-                            <div class="imgcontainer">
-                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-                            </div>
-<style>.container{color:black;}</style>
-                            <div class="container">
+                  <ul class="schema">
+                      <li>s_id(char(10))</li>
+                      <li>name(varchar(32))</li>
+                      <li>grade(int(1))</li>
+                      <li>class(varchar(32))</li>
+                      <li>score(char(2))</li>
+                  </ul>
+                  query</br>
+                  SELECT * FROM student_info WHERE name='$name ' AND s_id='$s_id'
+              </p>
+              </br>
+              </br>
 
 
-                            </div>
 
-</div>
-                        <script>
-$('#check').click( function() {
-     $('.container').html('');
-          $.ajax({
-              url: '/page2',
-              dataType: 'json',
-              type: 'POST',
-              data: {'name':$('#name').val(), 's_id':$('#s_id').val()},
-              success: function(result) {
-                  if ( result['result'] == true ) {
-                     $('.container').html(result['list']);
-                  }
-                  else{
+              <form action="/page2" method="post" autocomplete=off>
+                  <label style="font-size:15px;">name  :</label>
+                  <p><input type="text" placeholder="이름을 입력하시오." id="name" /></p>
+                  <label style="font-size:15px;">s_id  :</label>
+                  <p><input type="text" placeholder="학번을 입력하시오." id="s_id" /></p>
+                  <input type="button" value="확인" id="check" onclick="document.getElementById('id01').style.display='block'" /><br />
+              </form>
+              <div id="id01" class="modal">
+
+                         <div class="modal-content animate" >
+                              <div class="imgcontainer">
+                                  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+                              </div>
+   <style>.container{color:black;}</style>
+                              <div class="container">
+
+
+                              </div>
+
+   </div>
+                          <script>
+   $('#check').click( function() {
+       $('.container').html('');
+            $.ajax({
+                url: '/page2',
+                dataType: 'json',
+                type: 'POST',
+                data: {'name':$('#name').val(), 's_id':$('#s_id').val()},
+                success: function(result) {
+                    if ( result['result'] == true ) {
                        $('.container').html(result['list']);
-                  }
-              }
-          });
-      })
-    </script>
-     <script>
-                        // Get the modal
-                        var modal = document.getElementById('id01');
+                    }
+                    else{
+                         $('.container').html(result['list']);
+                    }
+                }
+            });
+        })
+      </script>
+       <script>
+                          // Get the modal
+                          var modal = document.getElementById('id01');
 
-                        // When the user clicks anywhere outside of the modal, close it
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
+                          // When the user clicks anywhere outside of the modal, close it
+                          window.onclick = function(event) {
+                              if (event.target == modal) {
+                                  modal.style.display = "none";
+                              }
+                          }
 
-                    </script>
-                    </div>
-        </div>
+                      </script>
+                      </div>
+            </div>
         <div class="cont" style="display:none;">
 
             <h3>UNION SQL Injection 방지 기법</h3>
