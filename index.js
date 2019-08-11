@@ -48,5 +48,4 @@ app.get('/', function(request, response) {
 });
 
 
-var port = process.env.PORT
-app.listen(port);
+app.listen(process.env.PORT || 3000);
