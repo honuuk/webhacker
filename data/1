@@ -86,7 +86,7 @@
                         <label style="font-size:15px;">Id :</label>
                         <p><input type="text" placeholder="아이디를 입력하시오." id="id"></p>
                         <label style="font-size:15px;">Password :</label>
-                        <p><input type="password" placeholder="비밀번호를 입력하시오." id="password"></p>
+                        <p><input type="password" placeholder="비밀번호를 입력하시오." id="password" style="width:60%;"></p>
                         <input type="button" id="login" value="로그인" /><br />
                     </form>
                     <br /><br />
@@ -99,10 +99,10 @@
               data: {'id':$('#id').val(), 'password':$('#password').val()},
               success: function(result) {
                   if ( result['result'] == true ) {
-                      alert('성공');
+                      alert('로그인 성공!');
                   }
                   else{
-                      alert('실패');
+                      alert('로그인 실패!');
                   }
               }
           });
