@@ -75,7 +75,7 @@
                       <li>score(char(2))</li>
                   </ul>
                   query</br>
-                  SELECT * FROM student_info WHERE name='$name ' AND s_id='$s_id'
+                  SELECT * FROM student_info WHERE name='name 입력값' AND s_id='사용자의 s_id 입력값'
               </p>
               </br>
               </br>

@@ -80,7 +80,7 @@
                       <li>account(char(5))</li>
                   </ul>
                   query</br>
-                  SELECT * FROM account_info WHERE account='$account'
+                  SELECT * FROM account_info WHERE account='사용자의 account 입력값'
                   </br>
                   </br>
 
