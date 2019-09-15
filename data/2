@@ -237,7 +237,7 @@ span.psw {
                 dataType: 'json',
                 type: 'POST',
                 data: {'name':$('#name').val(), 's_id':$('#s_id').val()},
-                success: function(result) {
+                success: function(result) {console.log(result);
                     if ( result['result'] == true ) {
                        $('.container').html(result['list']);
                     }
