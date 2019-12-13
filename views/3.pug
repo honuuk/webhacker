@@ -1,0 +1,155 @@
+include top.pug
+#grid2
+  .content
+    .cont
+      h3 BLIND INJECTION 이란?
+      p
+        | Blind Injection은 서버로 전송된 쿼리결과가 true / false 만으로 나타나는 상황에서 원하는 정보를 얻어낼 수 있는 공격기법이다. 즉, 쿼리에 대한 서버의 반응이 true일 때와 false일 때 구분할 수 있어야 한다. Blind Injection을 수행하기 위해서는 mysql의 두 가지 함수를 알아야 한다.
+      p
+        | 먼저 substr 함수이다. substr은 문자열을 자를 때 사용하는 함수이며 사용 방법은 아래와 같다.
+        br
+        br
+        | substr(자를 문자열, 자를 문자의 시작점, 자를 문자 갯수)
+        br
+        br
+        |                 예를 들어, str=substr("HelloWorld", 1, 3)일 경우, substr함수를 통해 HelloWorld의 1번째부터 3개의 문자가 str에 저장된다. 즉, str에는 Hel이 저장된다. 만약 str=substr("HelloWorld", 5, 2)일 경우에는 str에는 oW가 저장된다.
+      p
+        | 다음은 ascii 함수이다. ascii 함수는 문자의 아스키 코드 값을 반환해 주는 함수이며 사용 방법은 아래와 같다.
+        br
+        br
+        |                 ascii(아스키 코드로 반환 할 문자)
+        br
+        br
+        |                 예를 들어, ascii(a)는 a의 아스키 코드 값인 97이 반환한다.
+        br
+        |                 위의 2가지 함수를 통해 BLIND INJECTION을 수행할 수 있다.
+        br
+      h3 BLIND INJECTION 공격의 예
+      p
+        | 계좌번호를 입력하면 해당 계좌가 유효한지 확인해주는 웹 애플리케이션에서 Blind Injection을 통해 계좌번호가 15613인 사람의 이름을 알애내는 과정을 살펴보자. 이 애플리케이션은 사용자가 계좌번호를 입력했을때 유효한 계좌인지 아닌지 true / false 두 가지의 반응만 보인다. 서버로 전송되는 데이터베이스 쿼리는 다음과 같고 공격대상 테이블은 사용자의 이름이 저장된 name 컬럼과 사용자의 계좌번호가 저장된 account 컬럼으로
+        | 이루어져 있다.
+      |             SELECT *
+      br
+      |             FROM account_info
+      br
+      |             WHERE account = '사용자로부터 입력받은 account값'
+      br
+      p
+        | ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))의 쿼리를 사용하면 공격대상 테이블인 account_info 테이블에서 account가 15613인 행의 name의 첫 글자를 가져와 아스키 코드로 바꿔준다.공격시에는 이를 활용한다. 사용자가 입력칸에 다음과 같이 입력했을때 어떤 일이 일어나는지 살펴보자.
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>91#
+      br
+      p
+        | 위와 같은 입력이 들어왔을때 서버로 전송되는 쿼리문은 다음과 같다.
+      |             SELECT *
+      br
+      |             FROM account_info
+      br
+      |             WHERE account = '
+      span(style="color:red;")
+        | 15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>91#
+      span(style="color:gray;") '
+      br
+      p
+        | 15613은 유효한 계좌이기 때문에 AND 뒤에 있는 ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>91 쿼리가 true 이면 서버는 true를 리턴한다. 즉, 계좌번호가 15613인 사람의 첫번째 글자의 아스키코드가 91보다 크면 true를 리턴한다. 공격자는 서버의 반응과 아스키코드표를 통해 아스키코드 값이 91보다 크면 소문자, 91보다 작으면 대문자라는 정보를
+        | 얻을 수 있다.
+      img(src="/img/blind1.jpg")
+      p
+        | 서버의 반응이 true라면 소문자 a의 아스키코드값인 97부터, 반대로 서버의 반응이 false라면 대문자 A의 아스키코드값인 65부터 입력값을 변경하여 계속 시도해본다. 계좌번호가 15613인 사용자의 이름이 jack이라고 가정해보자. 그러면 처음 입력값의 91대신 96,97,98,99 ... 을 다음과 같이 입력하면 서버에서는 계속 true를 리턴할 것이다.
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>96#
+      br
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>97#
+      br
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>98#
+      br
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>99#
+      br
+      p
+        | 그러다가 ascii(substr((SELECT name FROM account_info WHERE account='15613'),1,1))>106 을 입력했을때 서버가 false를 리턴할 것이다.(소문자 j의 아스키코드값이 106이다.) 이로부터 공격자는 계좌번호가 15613인 사용자의 이름의 첫번째 글자가 j라는 정보를 얻을 수 있다. 두번째 글자에 대한 정보를 알아내기 위해서는 다음과 같이 입력하면 된다.
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),2,1))>91#
+      br
+      p
+        | 같은 방법을 통해 두번째 글자를 알아낼 수 있고 나머지 글자들도 알아낼 수 있다. 그럼 이름이 총 몇 글자인지는 어떻게 알 수 있을까? 사용자의 이름이 jack이라면 5번째 글자가 NULL값이기 때문에 다음 두 입력값은 모두 false를 true를 리턴한다.
+      |             15613' AND ascii(substr((SELECT name FROM account_info WHERE account='15613'),2,1))
+    .cont(style="display:none;")
+      p
+        | 아래에 계좌번호를 입력하면 유효한지 아닌지 보여준다. Blind injection을 이용하여 계좌번호가 15613인 사람의 이름을 알아내시오.
+        br
+        br
+        |                 테이블의 이름은 account_info이고 테이블은 name, account column으로 이루어져 있다.
+      br
+      br
+      |             database schema
+      ul.schema
+        li name(varchar(32))
+        li account(char(5))
+      |             query
+      br
+      |             SELECT * FROM account_info WHERE account='사용자의 account 입력값'
+      br
+      br
+      form(action="/page3" method="post" autocomplete="off" style="margin-top:30px;")
+        label(style="font-size:15px;") Account :
+        p
+          input#account(type="text" placeholder="계좌번호를 입력하시오.")
+        input#check1(type="button" value="확인")
+        br
+      script.
+        $('#check1').click(function() {
+        $.ajax({
+        url: '/page3',
+        dataType: 'json',
+        type: 'POST',
+        data: {
+        'account': $('#account').val()
+        },
+        success: function(result) {
+        if (result['result'] == true) {
+        alert('유효함');
+        } else {
+        alert('유효하지 않음');
+        }
+        }
+        });
+        })
+      br
+      br
+    .cont(style="display:none;")
+      h3 Blind Injection 방지 기법
+      |             Blind Injection 역시 SQL Injection 방지 기법을 통해 방어가 가능하다.
+      h4  1) Prepared Statement
+      p
+        | Prepared Statement는 말 그대로 서버에 전송될 데이터베이스 쿼리의 형태를 미리 준비해놓는 것이다.
+        br
+        |                 서버에 전송될 쿼리문을 다음과 같이 작성하게 되면 데이터베이스 쿼리가 어떤식으로 처리되는지 살펴보자.
+        br
+        br
+        |                 SELECT id FROM member WHERE id = ? AND pw = ?
+        br
+        br
+        |                 Prepared Statement를 사용하면 사용자에게 입력받은 ID값과 PASSWORD값을 해당하는 ? 부분에 삽입하여 쿼리를 전송하게 된다. 이렇게 되면 ?에 입력값이 할당될 때 입력값 전체가 int, string과 같은 알맞는 타입으로 변환 된 후 쿼리에 삽입이 되기 때문에 ', OR, DROP TABLE 등과 같은 문자들이 문법적인 기능을 상실하고 단순한 string으로 처리가 된다.
+        br
+        |                 예를 들어, 사용자가 id : tom123, pw : ' or '1'='1 을 입력하였다고 가정하면 입력한 id, pw 값이 string으로 처리 된 후 쿼리문에 삽입되게 된다.
+        br
+        br
+        |                 SELECT id FROM member WHERE id = '
+        span(style="color:red;") tom123
+        | ' AND pw :'
+        span(style="color:red;") ' or '1'='1
+        | '
+        br
+        br
+        |                 이 쿼리가 서버로 전송되면 서버는 데이터베이스의 member 테이블에서 ID값이 "
+        span(style="color:red;") tom123
+        | "이고 PASSWORD값이 "
+        span(style="color:red;") ' or '1'='1
+        | "인 계정이 존재하는지 확인하기 때문에 SQL Injection을 통한 인증 우회가 불가능해진다.
+      h4  2) 입력값 검증
+      p
+        | 사용자의 입력에 데이터베이스를 공격할 수 있는
+        br
+        br
+        |  /*, –, ‘, “, ?, #, (, ), ;, @, =, *, +, UNION, SELECT, DROP, UPDATE, FROM, WHERE, JOIN, SUBSTR, USER_TABLES, USER_TABLE_COLUMNS, INFORMATION_SCHEMA, SYSOBJECT, TABLE_SCHEMA
+        br
+        br
+        |  등등의 문자가 섞여 있는지를 확인하고 필터링을 해준다. 입력값 필터링만 제대로 해줘도 대부분의 공격을 막을 수 있다. 하지만 블랙리스트로 선정해놓은 단어들의 리스트 외의 키워드를 사용해 공격을 할 수도 있기 때문에 Prepared Statement를 사용하는 것을 추천한다.
+include bottom.pug

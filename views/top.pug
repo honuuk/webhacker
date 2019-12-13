@@ -1,0 +1,69 @@
+doctype html
+html(lang="en" dir="ltr")
+  head
+    meta(charset="utf-8")
+    title
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="/css/main.css")
+    link(rel="stylesheet" href="/css/popup.css")
+    link(href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js")
+    
+  body
+    .menubar
+      // 수정
+      ul
+        li
+          a(href="/") Home
+        li
+          a(href="#") SQL INJECTION
+          ul
+            li
+              a(href="/page/1") SQL INJECTION
+            li
+              a(href="/page/2") UNION BASED INJECTION
+            li
+              a(href="/page/3") BLIND INJECTION
+        li
+          a(href="#") CROSS SITE SCRIPTING(XSS)
+          ul
+            li
+              a(href="/page/4") BASIC XSS
+    #grid2
+      div(style="margin:100px 0;font-size:100px;font-weight:bold;")
+        p(style="color:#148CFF; margin-bottom:0;") Web
+        p Hacker
+        p.ddos
+          | Web Hacker는 보안에 대한 지식이 없는 사람도
+          br
+          |  쉽게 웹 해킹 공격기법에 대한 기본적이 내용을 학습하고 실습도 해볼 수 있는 웹사이트 입니다.
+          br
+          |  현재는 SQL INJECTION과 CROSS SITE SCRIPTING(XSS)에 대한 내용만 존재합니다. 계속해서 업데이트 할 예정입니다.
+          br
+          |  상단에 보이는 주제 중 학습할 주제를 클릭한 후 Step 1, Step 2, Step 3 순으로 학습하면 됩니다.
+          |                  Step 1에는 공격기법의 기본적인 이론, Step 2에는 해당 공격기법의 실습환경, Step 3에는 해당 공격기법의 방어기법이 소개되어 있습니다.
+      div
+        // 탭 부분
+        script.
+          function show(evt, num) {
+          var section = document.getElementsByClassName("cont");
+          for (var i = 0; i < section.length; i++) {
+          section[i].style.display = 'none';
+          }
+          section[num - 1].style.display = 'block';
+          var tablinks = document.getElementsByClassName("tablinks");
+          for (var i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          // Show the current tab, and add an "active" class to the button that opened the tab
+          evt.currentTarget.className += " active";
+          }
+        .main(style="margin-top:20px;")
+          input#tab1.tablinks.active(onclick="show(event,1)" type="radio" name="tabs" checked="")
+          label(for="tab1") Step 1
+          input#tab2.tablinks(onclick="show(event,2)" type="radio" name="tabs")
+          label(for="tab2") Step 2
+          input#tab3.tablinks(onclick="show(event,3)" type="radio" name="tabs")
+          label(for="tab3") Step 3
+        
+          

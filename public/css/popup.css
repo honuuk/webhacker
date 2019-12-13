@@ -160,3 +160,24 @@ span.psw {
 b {
     color: black;
 }
+
+.board_list {
+    color: black;
+    text-decoration: none;
+}
+
+.board_list:hover {
+    color: black;
+}
+
+.board_list:visited {
+    color: black;
+}
+
+th {
+    border-bottom: 0.1px solid white;
+}
+
+.section-body {
+    margin: 0 200px;
+}
