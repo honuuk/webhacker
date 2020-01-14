@@ -71,7 +71,7 @@ include top.pug
                 tr(style="height:10px;")
                   td.no(style="text-align:center;")= list.numbers
                   td.title(style="text-align:center;")
-                    a#1.board_list(href="#" onclick="document.getElementById('id02').style.display='block'")= list.title
+                    a(id=list.numbers).board_list(href="#" onclick="document.getElementById('id02').style.display='block'")= list.title
               
               
       
