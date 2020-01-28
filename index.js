@@ -15,22 +15,22 @@ app.post('/create_process', function(request, response) {
 app.post('/page1', function(request, response) {
     post_request.page1(request, response);
     var exec = require('child_process').exec;
-    var child = exec(' mysql -u b12dd5b02848c6 -paa02943d -h us-cdbr-iron-east-02.cleardb.net heroku_bbbbad86f15a6f6 < sqli.sql');
+    var child = exec(' mysql -u root -pwp486684 webhacker < sqli.sql');
 });
 app.post('/page2', function(request, response) {
     post_request.page2(request, response);
     var exec = require('child_process').exec;
-    var child = exec(' mysql -u b12dd5b02848c6 -paa02943d -h us-cdbr-iron-east-02.cleardb.net heroku_bbbbad86f15a6f6 < sqli.sql');
+    var child = exec(' mysql -u root -pwp486684 webhacker < sqli.sql');
 });
 app.post('/page3', function(request, response) {
     post_request.page3(request, response);
     var exec = require('child_process').exec;
-    var child = exec(' mysql -u b12dd5b02848c6 -paa02943d -h us-cdbr-iron-east-02.cleardb.net heroku_bbbbad86f15a6f6 < sqli.sql');
+    var child = exec(' mysql -u root -pwp486684 webhacker < sqli.sql');
 });
 app.post('/page4', function(request, response) {
     post_request.page4(request, response);
     var exec = require('child_process').exec;
-    var child = exec(' mysql -u b12dd5b02848c6 -paa02943d -h us-cdbr-iron-east-02.cleardb.net heroku_bbbbad86f15a6f6 < sqli.sql');
+    var child = exec(' mysql -u root -pwp486684 webhacker < sqli.sql');
 });
 
 //get request
