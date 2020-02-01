@@ -67,7 +67,7 @@ include top.pug
       h4 2) 공격대상 테이블의 테이블명 알아내기
       p
         | 공격대상 테이블의 컬럼 갯수가 5개라는 정보를 얻어낸 후 입력칸에 ' UNION SELECT 1,table_name,3,4,5 FROM information_schema.tables # 을 입력하게 되면 데이터베이스에 있는 모든 테이블의 이름을 확인할 수 있다. information_schema.tables에는 데이터베이스내의 모든 테이블의 정보가 담겨져 있는데 table_name을 통해 테이블명만 출력한다.
-      img(src="/img/union_result2.JPG")
+      img(src="/img/union_result2.jpg")
       br
       p
         | 출력화면에서 공격대상 테이블명인 student_info 를 찾을 수 있다. SELECT 1,table_name,3,4,5 FROM information_schema.tables 연산을 수행했기 때문에 2번 컬럼 name 자리에 table_name의 정보가 출력되게 된다.
@@ -77,14 +77,14 @@ include top.pug
         br
         |                 입력칸에 ' UNION SELECT 1,column_name,3,4,5 FROM information_schema.columns WHERE table_name='student_info' # 을 입력하게 되면 공격대상 테이블인 student_info 테이블의 모든 컬럼명이 출력된다. 데이터베이스내의 모든 컬럼의 정보가 담겨져 있는 information_schema.columns 에서 테이블명이 student_info인 테이블에 속해있는 컬럼의 컬럼명만을
         |                 column_name을 통해 출력한다.
-      img(src="/img/union_result3.JPG")
+      img(src="/img/union_result3.jpg")
       br
       p
         | 출력화면을 통해 숨겨져있던 5번째 컬럼명이 score 이고 학점정보가 담겨져 있다는 사실을 알아낼 수 있다.
       h4 4) 원하는 데이터 출력
       p
         | 공격대상 테이블에 대한 정보를 모두 얻었으니 이제 모든 학생의 학점정보를 출력할 차례이다. 기존의 쿼리문을 Empty set으로 만들고 UNION 연산을 통해 모든 학생의 학점정보를 출력하는 새로운 쿼리문을 작성하면 된다. 입력칸에 ' UNION SELECT s_id,name,score,class,5 FROM student_info #을 입력하면 grade 자리에 score 정보가 출력된다.
-      img(src="/img/union_result4.JPG")
+      img(src="/img/union_result4.jpg")
       br
     .cont(style="display:none;")
       p
